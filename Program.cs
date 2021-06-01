@@ -18,45 +18,46 @@ namespace DragonsDogmaFileCopierBot
 
         private static void PrintSaveItems(SaveItems saveItems)
         {
-            Console.WriteLine("Equipment List:");
-            foreach(var item in saveItems.EquipmentList)
+            Console.WriteLine("Equipment Lists:");
+            foreach(var list in saveItems.EquipmentLists)
             {
-                Console.WriteLine($"Quantity: {item.Num}");
-                Console.WriteLine($"Item Number: {item.ItemNo}");
-                Console.WriteLine($"ChgNum: {item.ChgNum}");
-                Console.WriteLine($"Primary Stat value: {item.Day1}");
-                Console.WriteLine($"Secondary Stat value: {item.Day2}");
-                Console.WriteLine($"Tertiary value: {item.Day3}");
-                Console.WriteLine($"Mutation Pool: {item.MutationPool}");
-                Console.WriteLine($"Owner Id: {item.OwnerId}");
-                Console.WriteLine($"Key: {item.Key}");
+                Console.WriteLine("Equipment List:");
+                foreach (var item in list)
+                {
+                    PrintItem(item);
+                }
             }
             Console.WriteLine("Inventory List:");
-            foreach (var item in saveItems.InventoryList)
+            foreach (var list in saveItems.InventoryLists)
             {
-                Console.WriteLine($"Quantity: {item.Num}");
-                Console.WriteLine($"Item Number: {item.ItemNo}");
-                Console.WriteLine($"ChgNum: {item.ChgNum}");
-                Console.WriteLine($"Primary Stat value: {item.Day1}");
-                Console.WriteLine($"Secondary Stat value: {item.Day2}");
-                Console.WriteLine($"Tertiary value: {item.Day3}");
-                Console.WriteLine($"Mutation Pool: {item.MutationPool}");
-                Console.WriteLine($"Owner Id: {item.OwnerId}");
-                Console.WriteLine($"Key: {item.Key}");
+                Console.WriteLine("Inventory List:");
+                foreach (var item in list)
+                {
+                    PrintItem(item);
+                }
             }
             Console.WriteLine("Storage List: ");
-            foreach (var item in saveItems.StorageList)
+            foreach (var list in saveItems.StorageLists)
             {
-                Console.WriteLine($"Quantity: {item.Num}");
-                Console.WriteLine($"Item Number: {item.ItemNo}");
-                Console.WriteLine($"ChgNum: {item.ChgNum}");
-                Console.WriteLine($"Primary Stat value: {item.Day1}");
-                Console.WriteLine($"Secondary Stat value: {item.Day2}");
-                Console.WriteLine($"Tertiary value: {item.Day3}");
-                Console.WriteLine($"Mutation Pool: {item.MutationPool}");
-                Console.WriteLine($"Owner Id: {item.OwnerId}");
-                Console.WriteLine($"Key: {item.Key}");
+                Console.WriteLine("Storage List:");
+                foreach (var item in list)
+                {
+                    PrintItem(item);
+                }
             }
+        }
+
+        private static void PrintItem(Item item)
+        {
+            Console.WriteLine($"Quantity: {item.Num}");
+            Console.WriteLine($"Item Number: {item.ItemNo}");
+            Console.WriteLine($"ChgNum: {item.ChgNum}");
+            Console.WriteLine($"Primary Stat value: {item.Day1}");
+            Console.WriteLine($"Secondary Stat value: {item.Day2}");
+            Console.WriteLine($"Tertiary value: {item.Day3}");
+            Console.WriteLine($"Mutation Pool: {item.MutationPool}");
+            Console.WriteLine($"Owner Id: {item.OwnerId}");
+            Console.WriteLine($"Key: {item.Key}");
         }
     }
 }

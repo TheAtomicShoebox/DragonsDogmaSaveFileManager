@@ -9,28 +9,28 @@ namespace DragonsDogmaFileCopierBot
     {
         public SaveItems(string fileAsString)
         {
-            var itemLists = ConvertItemArrays(fileAsString);
-            EquipmentList = itemLists.FirstOrDefault(il => il.ArrayType == "Equipment");
-            InventoryList = itemLists.FirstOrDefault(il => il.ArrayType == "Inventory");
-            StorageList = itemLists.FirstOrDefault(il => il.ArrayType == "Storage");
+            var itemLists = ConvertItemArrays(fileAsString).ToList();
+            EquipmentLists = itemLists.Where(il => il.ArrayType == "Equipment");
+            InventoryLists = itemLists.Where(il => il.ArrayType == "Inventory");
+            StorageLists = itemLists.Where(il => il.ArrayType == "Storage");
         }
 
-        public ItemList EquipmentList { get; set; }
-        public ItemList InventoryList { get; set; }
-        public ItemList StorageList { get; set; }
+        public IEnumerable<ItemList> EquipmentLists { get; set; }
+        public IEnumerable<ItemList> InventoryLists { get; set; }
+        public IEnumerable<ItemList> StorageLists { get; set; }
+
+        #region RegexInitialization
+        Regex arrayRegex = new Regex(@"(^<array name=""(\w+)"" type=""class"" count=""(\d+)"">$.).*?(?=^</array>$.)", RegexOptions.Singleline | RegexOptions.Multiline | RegexOptions.Compiled);
+
+        Regex headerRegex = new Regex(@"(?:<array name=""(\w+)"" type=""class"" count=""(\d+)"">)", RegexOptions.Compiled);
+
+        Regex itemRegex = new Regex(
+            @"(?<=^<class type=""sItemManager::cITEM_PARAM_DATA"">$.)(?:^<s16 name=""data\.(?:\w+)"" value=""(\d+)""/>$.)(?:^<s16 name=""data\.(?:\w+)"" value=""(\d+|-1)""/>$.)(?:^<u32 name=""data\.(?:\w+)"" value=""(\d+)""/>$.)(?:^<u16 name=""data\.(?:\w+)"" value=""(\d+)""/>$.)(?:^<u16 name=""data\.(?:\w+)"" value=""(\d+)""/>$.)(?:^<u16 name=""data\.(?:\w+)"" value=""(\d+)""/>$.)(?:^<u16 name=""data\.(?:\w+)"" value=""(\d+)""/>$.)(?:^<s8 name=""data\.(?:\w+)"" value=""(\d+)""/>$.)(?:^<s8 name=""data\.(?:\w+)"" value=""(\d+)""/>$.)(?:^<u32 name=""data\.(?:\w+)"" value=""(\d+)""/>$.)(?=^</class>$)",
+            RegexOptions.Singleline | RegexOptions.Multiline | RegexOptions.Compiled);
+        #endregion
 
         public IEnumerable<ItemList> ConvertItemArrays (string fileAsString)
         {
-            #region RegexInitialization (Consider Changing to assembled or compiled)
-            Regex arrayRegex = new Regex(@"(^<array name=""(\w+)"" type=""class"" count=""(\d+)"">$.).*?(?=^</array>$.)", RegexOptions.Singleline | RegexOptions.Multiline);
-
-            Regex headerRegex = new Regex(@"(?:<array name=""(\w+)"" type=""class"" count=""(\d+)"">)");
-
-            Regex itemRegex = new Regex(
-                @"(?<=^<class type=""sItemManager::cITEM_PARAM_DATA"">$.)(?:^<s16 name=""data\.(?:\w+)"" value=""(\d+)""/>$.)(?:^<s16 name=""data\.(?:\w+)"" value=""(\d+|-1)""/>$.)(?:^<u32 name=""data\.(?:\w+)"" value=""(\d+)""/>$.)(?:^<u16 name=""data\.(?:\w+)"" value=""(\d+)""/>$.)(?:^<u16 name=""data\.(?:\w+)"" value=""(\d+)""/>$.)(?:^<u16 name=""data\.(?:\w+)"" value=""(\d+)""/>$.)(?:^<u16 name=""data\.(?:\w+)"" value=""(\d+)""/>$.)(?:^<s8 name=""data\.(?:\w+)"" value=""(\d+)""/>$.)(?:^<s8 name=""data\.(?:\w+)"" value=""(\d+)""/>$.)(?:^<u32 name=""data\.(?:\w+)"" value=""(\d+)""/>$.)(?=^</class>$)",
-                RegexOptions.Singleline | RegexOptions.Multiline);
-            #endregion
-
             var arrayMatches = arrayRegex.Matches(fileAsString);
 
             foreach (Match arrayMatch in arrayMatches)
@@ -84,6 +84,14 @@ namespace DragonsDogmaFileCopierBot
                 }
                 yield return itemList;
             }
+        }
+
+        public void TransferItems(SaveItems sourceSave, SaveItems destinationSave)
+        {
+            /* Strategy:
+             * Get an Array of items, inclusive of headers
+             * Regex to find destination array, inclusive of headers, replace that with the string that is the source Array
+             */
         }
     }
 }
