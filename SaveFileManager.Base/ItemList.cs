@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace DragonsDogmaFileCopierBot
+namespace SaveFileManager.Base
 {
     public class ItemList : IEnumerable<Item>
     {

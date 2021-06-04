@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace DragonsDogmaFileCopierBot
+namespace SaveFileManager.Base
 {
     public static class FileHandler
     {

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaveFileManager", "SaveFileManager\SaveFileManager.csproj", "{4AD02E04-9776-423D-8F94-B551B4D49CB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveFileManager.Base", "SaveFileManager.Base\SaveFileManager.Base.csproj", "{0AA77BDC-9613-4190-8E90-8B5397C653DF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4AD02E04-9776-423D-8F94-B551B4D49CB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AD02E04-9776-423D-8F94-B551B4D49CB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AD02E04-9776-423D-8F94-B551B4D49CB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AD02E04-9776-423D-8F94-B551B4D49CB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AA77BDC-9613-4190-8E90-8B5397C653DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AA77BDC-9613-4190-8E90-8B5397C653DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AA77BDC-9613-4190-8E90-8B5397C653DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AA77BDC-9613-4190-8E90-8B5397C653DF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {13B6A686-D509-47FC-BF83-2F0DEA8B4A92}
+	EndGlobalSection
+EndGlobal

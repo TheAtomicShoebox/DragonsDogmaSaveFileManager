@@ -1,4 +1,4 @@
-﻿namespace DragonsDogmaFileCopierBot
+﻿namespace SaveFileManager.Base
 {
     public class Item
     {

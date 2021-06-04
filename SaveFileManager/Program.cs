@@ -1,6 +1,7 @@
 ﻿using System;
+using SaveFileManager.Base;
 
-namespace DragonsDogmaFileCopierBot
+namespace SaveFileManager
 {
     class Program
     {

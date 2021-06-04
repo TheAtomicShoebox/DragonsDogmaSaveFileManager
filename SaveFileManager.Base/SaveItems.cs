@@ -1,23 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace DragonsDogmaFileCopierBot
+namespace SaveFileManager.Base
 {
     public class SaveItems
     {
-        public SaveItems(string fileAsString)
+        public SaveItems(string filePath)
         {
+            var fileAsString = File.ReadAllText(filePath);
             var itemLists = ConvertItemArrays(fileAsString).ToList();
             EquipmentLists = itemLists.Where(il => il.ArrayType == "Equipment");
             InventoryLists = itemLists.Where(il => il.ArrayType == "Inventory");
             StorageLists = itemLists.Where(il => il.ArrayType == "Storage");
+            FilePath = filePath;
         }
 
         public IEnumerable<ItemList> EquipmentLists { get; set; }
         public IEnumerable<ItemList> InventoryLists { get; set; }
         public IEnumerable<ItemList> StorageLists { get; set; }
+        public string FilePath { get; set; }
+
+        //public const Item EmptyItem = new Item()
+        //{
+        //    Num = 0,
+        //    ItemNo = -1,
+        //    Flag = 0,
+        //    ChgNum = 0,
+        //    Day1 = 0,
+        //    Day2 = 0,
+        //    Day3 = 0,
+        //    MutationPool = 0,
+        //    OwnerId = 0,
+        //    Key = 0
+        //}
 
         #region RegexInitialization
         Regex arrayRegex = new Regex(@"(^<array name=""(\w+)"" type=""class"" count=""(\d+)"">$.).*?(?=^</array>$.)", RegexOptions.Singleline | RegexOptions.Multiline | RegexOptions.Compiled);
@@ -92,6 +110,9 @@ namespace DragonsDogmaFileCopierBot
              * Get an Array of items, inclusive of headers
              * Regex to find destination array, inclusive of headers, replace that with the string that is the source Array
              */
+
+            //When transferring items, all items go into the storage section. This removes any potential problems with ability to equip items, etc
+
         }
     }
 }
